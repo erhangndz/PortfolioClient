@@ -13,7 +13,6 @@ import { BrowserModule } from '@angular/platform-browser';
   declarations: [
 
     AdminComponent,
-    EducationComponent
   ],
   imports: [
     CommonModule,

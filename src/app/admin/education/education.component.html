@@ -1,1 +1,113 @@
 <h2>Education</h2>
+
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>School Name</th>
+    <th>Start Year</th>
+    <th>End Year</th>
+    <th>Delete</th>
+    <th>Edit</th>
+  </tr>
+
+<tr *ngFor="let education of educations">
+  <th>{{education.id}}</th>
+  <td>{{education.schoolName}}</td>
+  <td>{{education.startYear}}</td>
+  <td>{{education.endYear}}</td>
+
+  <td><button class="btn btn-danger" (click)="deleteEducation(education.id)"> Delete</button> </td>
+  <td><button type="button"  class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editBannerModal"  (click)="onSelected(education)"> Edit</button></td>
+</tr>
+</table>
+
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#newBannerModal">
+  New Education
+</button>
+
+
+<!-- Create Modal -->
+<div class="modal fade" id="newBannerModal" tabindex="-1" aria-labelledby="newBannerModalLabel" aria-hidden="true">
+  <form (ngSubmit)="createEducation();schoolName.value='';department.value='';startYear.value='';endYear.value='';">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newBannerModalLabel">Craete New Education</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label>School Name</label>
+          <input type="text" #schoolName  name="schoolName" [(ngModel)]="education.schoolName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Department</label>
+          <input type="text" #department name="department" [(ngModel)]="education.department"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Start Year</label>
+          <input type="text" #startYear name="startYear" [(ngModel)]="education.startYear"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>End Year</label>
+          <input type="text" #endYear name="endYear" [(ngModel)]="education.endYear"  class="form-control">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" type="submit" class="btn btn-dark btn-block" data-bs-dismiss="modal" >Save Changes</button>
+
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<!-- Update Modal -->
+<div class="modal fade" id="editBannerModal" tabindex="-1" aria-labelledby="editBannerModalLabel" aria-hidden="true">
+  <form id="editForm" (ngSubmit)="updateEducation()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editBannerModalLabel">Edit Banner</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label>School Name</label>
+          <input type="text" #schoolName  name="schoolName" [(ngModel)]="editEducation.schoolName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Department</label>
+          <input type="text" #department name="department" [(ngModel)]="editEducation.department"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Start Year</label>
+          <input type="text" #startYear name="startYear" [(ngModel)]="editEducation.startYear"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>End Year</label>
+          <input type="text" #endYear name="endYear" [(ngModel)]="editEducation.endYear"  class="form-control">
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal"  >Update Changes</button>
+
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>
