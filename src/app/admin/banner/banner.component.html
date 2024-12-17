@@ -1,0 +1,108 @@
+<h2>Banner</h2>
+
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Delete</th>
+    <th>Edit</th>
+  </tr>
+
+<tr *ngFor="let banner of banners">
+  <th>{{banner.id}}</th>
+  <td><img src="{{banner.imageUrl}}" alt="Profile" style="width: 80px; height: auto;" ></td>
+  <td>{{banner.name}}</td>
+  <td>{{banner.title}}</td>
+  <td>
+    <button class="btn btn-danger" (click)="deleteBanner(banner.id)"> Delete</button>
+
+  </td>
+  <td>
+    <button type="button"  class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editBannerModal" (click)="onSelected(banner)"> Edit</button>
+  </td>
+</tr>
+</table>
+
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#newBannerModal">
+  New Banner
+</button>
+
+
+<!-- Create Modal -->
+<div class="modal fade" id="newBannerModal" tabindex="-1" aria-labelledby="newBannerModalLabel" aria-hidden="true">
+  <form (ngSubmit)="createBanner();imageUrl.value='';name.value='';title.value='';">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newBannerModalLabel">Craete New Banner</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label>Image Url</label>
+          <input type="text" #imageUrl  name="imageUrl" [(ngModel)]="banner.imageUrl" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" #name name="name" [(ngModel)]="banner.name"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" #title name="title" [(ngModel)]="banner.title"  class="form-control">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" type="submit" class="btn btn-dark btn-block" data-bs-dismiss="modal" >Save Changes</button>
+
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<!-- Update Modal -->
+<div class="modal fade" id="editBannerModal" tabindex="-1" aria-labelledby="editBannerModalLabel" aria-hidden="true">
+  <form id="editForm" (ngSubmit)="updateBanner()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editBannerModalLabel">Edit Banner</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label>Image Url</label>
+          <input type="text"  name="imageUrl" [(ngModel)]="editBanner.imageUrl" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text"  name="name" [(ngModel)]="editBanner.name"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text"  name="title" [(ngModel)]="editBanner.title"  class="form-control">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal"  >Update Changes</button>
+
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>
