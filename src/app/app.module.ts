@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { BannerComponent } from './admin/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { EducationComponent } from './admin/education/education.component';
+import { CategoryComponent } from './admin/category/category.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EducationComponent } from './admin/education/education.component';
     AdminLayoutComponent,
     MainLayoutComponent,
     BannerComponent,
-    EducationComponent
+    EducationComponent,
+    CategoryComponent
 
   ],
   imports: [

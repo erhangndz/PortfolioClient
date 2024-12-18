@@ -1,0 +1,109 @@
+/* Genel sıfırlama */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0; /* Başlangıçta açık */
+  width: 300px;
+  height: 100%;
+  background-color: #343a40;
+  color: white;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Mobil görünümde sidebar başlangıçta gizlenir */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-300px); /* Gizli */
+  }
+}
+
+/* Sidebar açıkken (mobilde) */
+.sidebar.open {
+  transform: translateX(0); /* Görünür */
+}
+
+/* Sidebar içindeki linkler */
+.sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #495057;
+}
+
+.sidebar a:hover {
+  background-color: #495057;
+  color: #00bcd4;
+}
+
+
+
+/* İçerik */
+.content {
+  margin-left: 300px; /* Sidebar açık olduğunda içerik kayar */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Mobilde içerik sidebar'ın etkisini hissetmez */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0; /* Mobilde içerik sola sıfırlanır */
+  }
+}
+
+/* Sidebar açık olduğunda içerik sağa kayar */
+.content.shifted {
+  margin-left: 300px;
+}
+
+/* Mobilde tam ekran kaplayan alan (arka plan) */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Siyah yarı saydam */
+  z-index: 999;
+}
+
+/* Sidebar açık olduğunda overlay görünür */
+.overlay.show {
+  display: block;
+}
+
+
+/* Sidebar linklerin varsayılan stili */
+.sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #495057;
+}
+
+/* Hover efekti */
+.sidebar a:hover {
+  background-color: #495057;
+  color: #00bcd4;
+}
+
+/* Active sınıfı */
+.sidebar a.active {
+  background-color: #00bcd4; /* Seçili linkin arka plan rengi */
+  color: white; /* Seçili linkin yazı rengi */
+  font-weight: bold; /* İsteğe bağlı: Seçili linkin kalın yazımı */
+  border-left: 5px solid #ffffff; /* İsteğe bağlı: Sol tarafta bir şerit */
+}
+

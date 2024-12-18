@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Education } from '../../_models/education';
 import { ApiService } from '../../_services/api.service';
 declare const alertify:any;
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-education',
@@ -26,13 +27,32 @@ getEducations(){
   },error=>alertify.error(error.error))
 }
 
+
+
 deleteEducation(id:number){
-  this.apiService.delete('educations',id).subscribe(result=>{
-    alertify.error("Education Deleted");
-    this.educations = this.educations.filter(x=>x.id!=id);   },
-                                      error=>
-  alertify.error(error)
-  )
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.apiService.delete("educations",id).subscribe({
+        error: err => alertify.error(err.error),
+        complete: () => {alertify.error("Category Deleted"),
+        this.educations = this.educations.filter(x=>x.id!=id) }
+      });
+      Swal.fire({
+        title: "Deleted!",
+        text: "Education has been deleted.",
+        icon: "success"
+      });
+    }
+  });
+
 }
 
 

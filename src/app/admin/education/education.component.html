@@ -1,34 +1,41 @@
-<h2>Education</h2>
+<div class="card text-left">
 
-<table class="table table-bordered">
-  <tr>
-    <th>#</th>
-    <th>School Name</th>
-    <th>Start Year</th>
-    <th>End Year</th>
-    <th>Delete</th>
-    <th>Edit</th>
-  </tr>
+  <div class="card-body">
+    <h3 class="card-title">Educations</h3>
+    <table class="table table-bordered mt-2">
+      <tr>
+        <th>#</th>
+        <th>School Name</th>
+        <th>Deparment</th>
+        <th>Start Year</th>
+        <th>End Year</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
 
-<tr *ngFor="let education of educations">
-  <th>{{education.id}}</th>
-  <td>{{education.schoolName}}</td>
-  <td>{{education.startYear}}</td>
-  <td>{{education.endYear}}</td>
+    <tr *ngFor="let education of educations; let i = index">
+      <th>{{i+1}}</th>
+      <td>{{education.schoolName}}</td>
+      <td>{{education.department}}</td>
+      <td>{{education.startYear}}</td>
+      <td>{{education.endYear}}</td>
 
-  <td><button class="btn btn-danger" (click)="deleteEducation(education.id)"> Delete</button> </td>
-  <td><button type="button"  class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editBannerModal"  (click)="onSelected(education)"> Edit</button></td>
-</tr>
-</table>
+      <td><button class="btn btn-danger" (click)="deleteEducation(education.id)"> Delete</button> </td>
+      <td><button type="button"  class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editBannerModal"  (click)="onSelected(education)"> Edit</button></td>
+    </tr>
+    </table>
 
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#newBannerModal">
-  New Education
-</button>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#newBannerModal">
+      New Education
+    </button>
+  </div>
+</div>
+
 
 
 <!-- Create Modal -->
 <div class="modal fade" id="newBannerModal" tabindex="-1" aria-labelledby="newBannerModalLabel" aria-hidden="true">
-  <form (ngSubmit)="createEducation();schoolName.value='';department.value='';startYear.value='';endYear.value='';">
+  <form #createForm="ngForm" (ngSubmit)="createEducation();schoolName.value='';department.value='';startYear.value='';endYear.value='';">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -41,25 +48,25 @@
 
         <div class="form-group">
           <label>School Name</label>
-          <input type="text" #schoolName  name="schoolName" [(ngModel)]="education.schoolName" class="form-control">
+          <input type="text" #schoolName  name="schoolName" [(ngModel)]="education.schoolName" class="form-control" required="">
         </div>
         <div class="form-group">
           <label>Department</label>
-          <input type="text" #department name="department" [(ngModel)]="education.department"  class="form-control">
+          <input type="text" #department name="department" [(ngModel)]="education.department"  class="form-control"  required="">
         </div>
         <div class="form-group">
           <label>Start Year</label>
-          <input type="text" #startYear name="startYear" [(ngModel)]="education.startYear"  class="form-control">
+          <input type="text" #startYear name="startYear" [(ngModel)]="education.startYear"  class="form-control" required="">
         </div>
         <div class="form-group">
           <label>End Year</label>
-          <input type="text" #endYear name="endYear" [(ngModel)]="education.endYear"  class="form-control">
+          <input type="text" #endYear name="endYear" [(ngModel)]="education.endYear"  class="form-control" required="">
         </div>
 
 
       </div>
       <div class="modal-footer">
-        <button type="button" type="submit" class="btn btn-dark btn-block" data-bs-dismiss="modal" >Save Changes</button>
+        <button type="button" type="submit" class="btn btn-dark btn-block" data-bs-dismiss="modal" [disabled]="createForm.invalid" >Save Changes</button>
 
 
       </div>
@@ -71,12 +78,12 @@
 
 <!-- Update Modal -->
 <div class="modal fade" id="editBannerModal" tabindex="-1" aria-labelledby="editBannerModalLabel" aria-hidden="true">
-  <form id="editForm" (ngSubmit)="updateEducation()">
+  <form #editForm="ngForm" (ngSubmit)="updateEducation()">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editBannerModalLabel">Edit Banner</h1>
+        <h1 class="modal-title fs-5" id="editBannerModalLabel">Edit Education</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -84,26 +91,26 @@
 
         <div class="form-group">
           <label>School Name</label>
-          <input type="text" #schoolName  name="schoolName" [(ngModel)]="editEducation.schoolName" class="form-control">
+          <input type="text" #schoolName  name="schoolName" [(ngModel)]="editEducation.schoolName" class="form-control" required="">
         </div>
         <div class="form-group">
           <label>Department</label>
-          <input type="text" #department name="department" [(ngModel)]="editEducation.department"  class="form-control">
+          <input type="text" #department name="department" [(ngModel)]="editEducation.department"  class="form-control" required="">
         </div>
         <div class="form-group">
           <label>Start Year</label>
-          <input type="text" #startYear name="startYear" [(ngModel)]="editEducation.startYear"  class="form-control">
+          <input type="text" #startYear name="startYear" [(ngModel)]="editEducation.startYear"  class="form-control" required="">
         </div>
         <div class="form-group">
           <label>End Year</label>
-          <input type="text" #endYear name="endYear" [(ngModel)]="editEducation.endYear"  class="form-control">
+          <input type="text" #endYear name="endYear" [(ngModel)]="editEducation.endYear"  class="form-control" required="">
         </div>
 
 
 
       </div>
       <div class="modal-footer">
-        <button type="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal"  >Update Changes</button>
+        <button type="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="editForm.invalid || !editForm.dirty" >Update Changes</button>
 
 
       </div>

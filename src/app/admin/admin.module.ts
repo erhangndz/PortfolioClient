@@ -7,12 +7,14 @@ import { AdminComponent } from './admin.component';
 import { EducationComponent } from './education/education.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
   declarations: [
 
     AdminComponent,
+
   ],
   imports: [
     CommonModule,

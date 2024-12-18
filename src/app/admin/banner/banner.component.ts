@@ -3,6 +3,7 @@ import { ApiService } from '../../_services/api.service';
 import { Banner } from '../../_models/banner';
 import { Router } from '@angular/router';
 declare const alertify:any;
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -12,7 +13,6 @@ declare const alertify:any;
 })
 export class BannerComponent {
 banners: Banner[];
-bannerCount:number;
 banner:Banner= new Banner('','','');
 
 editBanner:Banner={id:0,name:'',title:'',imageUrl:''};
@@ -28,19 +28,40 @@ constructor(private apiService:ApiService,
 
 
 getBanners(){
-  this.apiService.getAll('banners').subscribe(result=>
-this.banners=result,
-error=> alertify.error(error.error)
-  )
+  this.apiService.getAll('banners').subscribe({
+    next: result=> this.banners= result,
+    error: err=> alertify.error(err),
+
+  })
 }
 
+
+
+
 deleteBanner(id:number){
-  this.apiService.delete('banners',id).subscribe(result=>{
-    alertify.error("Banner Deleted");
-    this.banners = this.banners.filter(x=>x.id!=id);   },
-                                      error=>
-  alertify.error(error)
-  )
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.apiService.delete("banners",id).subscribe({
+        error: err => alertify.error(err.error),
+        complete: () => {alertify.error("Banner Deleted"),
+        this.banners = this.banners.filter(x=>x.id!=id) }
+      });
+      Swal.fire({
+        title: "Deleted!",
+        text: "Banner has been deleted.",
+        icon: "success"
+      });
+    }
+  });
+
 }
 
 
