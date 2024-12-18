@@ -7,6 +7,7 @@ import { BannerComponent } from './admin/banner/banner.component';
 import { EducationComponent } from './admin/education/education.component';
 import { MainComponent } from './main/main.component';
 import { CategoryComponent } from './admin/category/category.component';
+import { ProjectComponent } from './admin/project/project.component';
 
 const routes: Routes = [
   //Main Routes
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'category',
        component: CategoryComponent
+      },
+      {
+        path: 'project',
+       component: ProjectComponent
       },
 
     ],

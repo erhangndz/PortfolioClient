@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 export class EducationComponent {
 
 educations: Education[];
-education: Education = new Education('','','','');
+education: Education = new Education();
 editEducation: Education= {id:0,schoolName:'',department:'',startYear:'',endYear:''}
 
 

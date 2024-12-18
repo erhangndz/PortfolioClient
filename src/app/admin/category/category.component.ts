@@ -13,7 +13,7 @@ declare const alertify:any;
 export class CategoryComponent {
 
 categories :Category[];
-category: Category = new Category('');
+category: Category = new Category();
 editCategory:Category = {id:0,name:''};
 
 

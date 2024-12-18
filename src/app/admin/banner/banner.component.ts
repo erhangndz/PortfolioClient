@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 })
 export class BannerComponent {
 banners: Banner[];
-banner:Banner= new Banner('','','');
+banner:Banner= new Banner();
 
 editBanner:Banner={id:0,name:'',title:'',imageUrl:''};
 

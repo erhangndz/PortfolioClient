@@ -11,6 +11,7 @@ import { BannerComponent } from './admin/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { EducationComponent } from './admin/education/education.component';
 import { CategoryComponent } from './admin/category/category.component';
+import { ProjectComponent } from './admin/project/project.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CategoryComponent } from './admin/category/category.component';
     MainLayoutComponent,
     BannerComponent,
     EducationComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProjectComponent
 
   ],
   imports: [

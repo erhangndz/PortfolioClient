@@ -1,53 +1,48 @@
 <div class="card text-left">
   <div class="card-body">
-    <h3 class="card-title">Banner</h3>
-    <table class="table table-bordered">
+    <h3 class="card-title">Projects</h3>
+
+    <table class="table table-bordered table-hover">
       <tr>
         <th>#</th>
         <th>Image</th>
-        <th>Name</th>
-        <th>Title</th>
+        <th>Project Title</th>
+        <th>Github Url</th>
+        <th>Category</th>
         <th>Delete</th>
         <th>Edit</th>
       </tr>
 
-      <tr *ngFor="let banner of banners; let i = index">
+      <tr *ngFor="let item of projects; let i = index">
         <th>{{ i + 1 }}</th>
+        <td> <img src="{{ item.imageUrl }}" style="width: 75px; height: 75px;" alt="project img">  </td>
+        <td>{{ item.title }}</td>
+        <td><a href="{{item.githubUrl}}" target="_blank" class="btn btn-primary" >Github Url</a></td>
+        <td>{{item.category.name}}</td>
         <td>
-          <img
-            src="{{ banner.imageUrl }}"
-            alt="Profile"
-            style="width: 80px; height: auto"
-          />
-        </td>
-        <td>{{ banner.name }}</td>
-        <td>{{ banner.title }}</td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteBanner(banner.id)">
+          <button class="btn btn-danger" (click)="deleteProject(item.id)">
             Delete
           </button>
         </td>
         <td>
           <button
-            type="button"
             class="btn btn-info"
+            (click)="onSelected(item)"
             data-bs-toggle="modal"
             data-bs-target="#editBannerModal"
-            (click)="onSelected(banner)"
           >
             Edit
           </button>
         </td>
       </tr>
     </table>
-
     <button
       type="button"
       class="btn btn-dark"
       data-bs-toggle="modal"
       data-bs-target="#newBannerModal"
     >
-      New Banner
+      New Project
     </button>
   </div>
 </div>
@@ -60,17 +55,12 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form
-    #createForm="ngForm"
-    (ngSubmit)="
-      createBanner(); imageUrl.value = ''; name.value = ''; title.value = ''
-    "
-  >
+  <form #createForm="ngForm" (ngSubmit)="createProject(); title.value =''">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="newBannerModalLabel">
-            Create New Banner
+            Create New Project
           </h1>
           <button
             type="button"
@@ -81,37 +71,67 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
+            <label>Project Title</label>
+            <input
+              type="text"
+              #title
+              name="title"
+              [(ngModel)]="project.title"
+              class="form-control"
+              required=""
+            />
+          </div>
+
+          <div class="form-group">
             <label>Image Url</label>
             <input
               type="text"
               #imageUrl
               name="imageUrl"
-              [(ngModel)]="banner.imageUrl"
+              [(ngModel)]="project.imageUrl"
               class="form-control"
               required=""
             />
           </div>
+
           <div class="form-group">
-            <label>Name</label>
+            <label>Github Url</label>
             <input
               type="text"
-              #name
-              name="name"
-              [(ngModel)]="banner.name"
+              #githubUrl
+              name="githubUrl"
+              [(ngModel)]="project.githubUrl"
               class="form-control"
               required=""
             />
           </div>
+
           <div class="form-group">
-            <label>Title</label>
-            <input
+            <label>Project Description</label>
+            <textarea
               type="text"
-              #title
-              name="title"
-              [(ngModel)]="banner.title"
+              #description
+              name="description"
+              [(ngModel)]="project.description"
               class="form-control"
               required=""
-            />
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select
+              type="text"
+              #categoryId
+              name="categoryId"
+              [(ngModel)]="project.categoryId"
+              class="form-control"
+              required=""
+            >
+            <option>Choose Category</option>
+            <option *ngFor="let item of categories" value="{{item.id}}">{{item.name}}</option>
+          </select>
           </div>
         </div>
         <div class="modal-footer">
@@ -138,12 +158,12 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateBanner()">
+  <form #editForm="ngForm" (ngSubmit)="updateProject(); title.value =''">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="editBannerModalLabel">
-            Edit Banner
+            Edit Project
           </h1>
           <button
             type="button"
@@ -154,34 +174,67 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
+            <label>Project Title</label>
+            <input
+              type="text"
+              #title
+              name="title"
+              [(ngModel)]="editProject.title"
+              class="form-control"
+              required=""
+            />
+          </div>
+
+          <div class="form-group">
             <label>Image Url</label>
             <input
               type="text"
+              #imageUrl
               name="imageUrl"
-              [(ngModel)]="editBanner.imageUrl"
+              [(ngModel)]="editProject.imageUrl"
               class="form-control"
               required=""
             />
           </div>
+
           <div class="form-group">
-            <label>Name</label>
+            <label>Github Url</label>
             <input
               type="text"
-              name="name"
-              [(ngModel)]="editBanner.name"
+              #githubUrl
+              name="githubUrl"
+              [(ngModel)]="editProject.githubUrl"
               class="form-control"
               required=""
             />
           </div>
+
           <div class="form-group">
-            <label>Title</label>
-            <input
+            <label>Project Description</label>
+            <textarea
               type="text"
-              name="title"
-              [(ngModel)]="editBanner.title"
+              #description
+              name="description"
+              [(ngModel)]="editProject.description"
               class="form-control"
               required=""
-            />
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select
+              type="text"
+              #categoryId
+              name="categoryId"
+              [(ngModel)]="editProject.categoryId"
+              class="form-control"
+              required=""
+            >
+            <option>Choose Category</option>
+            <option *ngFor="let item of categories" value="{{item.id}}" [selected]="editProject.categoryId">{{item.name}}</option>
+          </select>
           </div>
         </div>
         <div class="modal-footer">
