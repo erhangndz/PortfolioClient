@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { EducationComponent } from './admin/education/education.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProjectComponent } from './admin/project/project.component';
+import { ContactComponent } from './admin/contact/contact.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ProjectComponent } from './admin/project/project.component';
     BannerComponent,
     EducationComponent,
     CategoryComponent,
-    ProjectComponent
+    ProjectComponent,
+    ContactComponent,
 
   ],
   imports: [

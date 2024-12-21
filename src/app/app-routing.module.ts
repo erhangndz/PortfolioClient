@@ -8,6 +8,7 @@ import { EducationComponent } from './admin/education/education.component';
 import { MainComponent } from './main/main.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProjectComponent } from './admin/project/project.component';
+import { ContactComponent } from './admin/contact/contact.component';
 
 const routes: Routes = [
   //Main Routes
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'project',
        component: ProjectComponent
+      },
+      {
+        path: 'contact',
+       component: ContactComponent
       },
 
     ],
