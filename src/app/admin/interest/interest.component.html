@@ -1,53 +1,44 @@
 <div class="card text-left">
   <div class="card-body">
-    <h3 class="card-title">Banner</h3>
-    <table class="table table-bordered">
+    <h3 class="card-title">Interests</h3>
+
+    <table class="table table-bordered table-hover">
       <tr>
         <th>#</th>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Title</th>
+        <th>Interest Name</th>
+        <th>Description</th>
         <th>Delete</th>
         <th>Edit</th>
       </tr>
 
-      <tr *ngFor="let banner of banners; let i = index">
+      <tr *ngFor="let item of interests; let i = index">
         <th>{{ i + 1 }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
         <td>
-          <img
-            src="{{ banner.imageUrl }}"
-            alt="Profile"
-            style="width: 80px; height: auto"
-          />
-        </td>
-        <td>{{ banner.name }}</td>
-        <td>{{ banner.title }}</td>
-        <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteBanner(banner.id)">
-           <i class="fa fa-trash" aria-hidden="true"></i> Delete
+          <button class="btn btn-danger" (click)="deleteInterest(item.id)">
+            <i class="fa fa-trash" aria-hidden="true"></i> Delete
           </button>
         </td>
         <td>
           <button
-            type="button"
-            class="btn btn-info btn-sm"
+            class="btn btn-info"
+            (click)="onSelected(item)"
             data-bs-toggle="modal"
             data-bs-target="#editBannerModal"
-            (click)="onSelected(banner)"
           >
-           <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            <i class="fa fa-pencil" aria-hidden="true"></i>  Edit
           </button>
         </td>
       </tr>
     </table>
-
     <button
       type="button"
-      class="btn btn-dark btn-sm"
+      class="btn btn-dark"
       data-bs-toggle="modal"
       data-bs-target="#newBannerModal"
     >
-     <i class="fa fa-plus-circle" aria-hidden="true"></i> New Banner
+      <i class="fa fa-plus-circle" aria-hidden="true"></i> New Interest
     </button>
   </div>
 </div>
@@ -60,17 +51,12 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form
-    #createForm="ngForm"
-    (ngSubmit)="
-      createBanner(); imageUrl.value = ''; name.value = ''; title.value = ''
-    "
-  >
+  <form #createForm="ngForm" (ngSubmit)="createInterest(); name.value = '';description.value=''">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="newBannerModalLabel">
-            Create New Banner
+            Create New Interest
           </h1>
           <button
             type="button"
@@ -81,34 +67,23 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label>Image Url</label>
-            <input
-              type="text"
-              #imageUrl
-              name="imageUrl"
-              [(ngModel)]="banner.imageUrl"
-              class="form-control"
-              required=""
-            />
-          </div>
-          <div class="form-group">
-            <label>Name</label>
+            <label>Interest Name</label>
             <input
               type="text"
               #name
               name="name"
-              [(ngModel)]="banner.name"
+              [(ngModel)]="interest.name"
               class="form-control"
               required=""
             />
           </div>
           <div class="form-group">
-            <label>Title</label>
+            <label>Description</label>
             <input
               type="text"
-              #title
-              name="title"
-              [(ngModel)]="banner.title"
+              #description
+              name="description"
+              [(ngModel)]="interest.description"
               class="form-control"
               required=""
             />
@@ -122,7 +97,7 @@
             data-bs-dismiss="modal"
             [disabled]="createForm.invalid"
           >
-           <i class="fas fa-save    "></i> Save Changes
+            <i class="fas fa-save    "></i> Save Changes
           </button>
         </div>
       </div>
@@ -138,12 +113,12 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateBanner()">
+  <form #editForm="ngForm" (ngSubmit)="updateInterest(); name.value = '';description.value=''">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="editBannerModalLabel">
-            Edit Banner
+            Edit Interest
           </h1>
           <button
             type="button"
@@ -154,31 +129,23 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label>Image Url</label>
+            <label>Interest Name</label>
             <input
               type="text"
-              name="imageUrl"
-              [(ngModel)]="editBanner.imageUrl"
-              class="form-control"
-              required=""
-            />
-          </div>
-          <div class="form-group">
-            <label>Name</label>
-            <input
-              type="text"
+              #name
               name="name"
-              [(ngModel)]="editBanner.name"
+              [(ngModel)]="editInterest.name"
               class="form-control"
               required=""
             />
           </div>
           <div class="form-group">
-            <label>Title</label>
+            <label>Description</label>
             <input
               type="text"
-              name="title"
-              [(ngModel)]="editBanner.title"
+              #description
+              name="description"
+              [(ngModel)]="editInterest.description"
               class="form-control"
               required=""
             />
@@ -192,7 +159,7 @@
             data-bs-dismiss="modal"
             [disabled]="editForm.invalid || !editForm.dirty"
           >
-           <i class="fa fa-pencil" aria-hidden="true"></i> Update Changes
+           <i class="fa fa-pencil" aria-hidden="true"></i>  Update Changes
           </button>
         </div>
       </div>

@@ -9,6 +9,9 @@ import { MainComponent } from './main/main.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { ContactComponent } from './admin/contact/contact.component';
+import { ExperienceComponent } from './admin/experience/experience.component';
+import { InterestComponent } from './admin/interest/interest.component';
+import { MessageComponent } from './admin/message/message.component';
 
 const routes: Routes = [
   //Main Routes
@@ -51,6 +54,18 @@ const routes: Routes = [
       {
         path: 'contact',
        component: ContactComponent
+      },
+      {
+        path: 'experience',
+       component: ExperienceComponent
+      },
+      {
+        path: 'interest',
+       component: InterestComponent
+      },
+      {
+        path: 'message',
+       component: MessageComponent
       },
 
     ],

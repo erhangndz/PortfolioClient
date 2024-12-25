@@ -17,21 +17,21 @@
         <th>{{ i + 1 }}</th>
         <td> <img src="{{ item.imageUrl }}" style="width: 75px; height: 75px;" alt="project img">  </td>
         <td>{{ item.title }}</td>
-        <td><a href="{{item.githubUrl}}" target="_blank" class="btn btn-primary" >Github Url</a></td>
+        <td><a href="{{item.githubUrl}}" target="_blank" ><i class="fab fa-github    "></i> Github</a></td>
         <td>{{item.category.name}}</td>
         <td>
-          <button class="btn btn-danger" (click)="deleteProject(item.id)">
-            Delete
+          <button class="btn btn-danger btn-sm" (click)="deleteProject(item.id)">
+           <i class="fa fa-trash" aria-hidden="true"></i> Delete
           </button>
         </td>
         <td>
           <button
-            class="btn btn-info"
+            class="btn btn-info btn-sm"
             (click)="onSelected(item)"
             data-bs-toggle="modal"
             data-bs-target="#editBannerModal"
           >
-            Edit
+          <i class="fa fa-pencil" aria-hidden="true"></i>  Edit
           </button>
         </td>
       </tr>
@@ -42,7 +42,7 @@
       data-bs-toggle="modal"
       data-bs-target="#newBannerModal"
     >
-      New Project
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>  New Project
     </button>
   </div>
 </div>
@@ -142,7 +142,7 @@
             data-bs-dismiss="modal"
             [disabled]="createForm.invalid"
           >
-            Save Changes
+          <i class="fas fa-save    "></i>  Save Changes
           </button>
         </div>
       </div>
@@ -245,7 +245,7 @@
             data-bs-dismiss="modal"
             [disabled]="editForm.invalid || !editForm.dirty"
           >
-            Update Changes
+           <i class="fa fa-pencil" aria-hidden="true"></i> Update Changes
           </button>
         </div>
       </div>

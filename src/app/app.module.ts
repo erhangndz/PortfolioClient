@@ -13,6 +13,9 @@ import { EducationComponent } from './admin/education/education.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { ContactComponent } from './admin/contact/contact.component';
+import { ExperienceComponent } from './admin/experience/experience.component';
+import { InterestComponent } from './admin/interest/interest.component';
+import { MessageComponent } from './admin/message/message.component';
 
 
 @NgModule({
@@ -25,6 +28,10 @@ import { ContactComponent } from './admin/contact/contact.component';
     CategoryComponent,
     ProjectComponent,
     ContactComponent,
+    ExperienceComponent,
+    InterestComponent,
+    MessageComponent,
+    HomeComponent
 
   ],
   imports: [
