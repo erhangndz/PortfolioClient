@@ -12,6 +12,7 @@ import { ContactComponent } from './admin/contact/contact.component';
 import { ExperienceComponent } from './admin/experience/experience.component';
 import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
+import { LoginComponent } from './home/login/login.component';
 
 const routes: Routes = [
   //Main Routes
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'main',
         component: MainComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
     ],
   },

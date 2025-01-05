@@ -16,7 +16,7 @@ import { ContactComponent } from './admin/contact/contact.component';
 import { ExperienceComponent } from './admin/experience/experience.component';
 import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
-
+import { LoginComponent } from './home/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,17 +31,11 @@ import { MessageComponent } from './admin/message/message.component';
     ExperienceComponent,
     InterestComponent,
     MessageComponent,
-    HomeComponent
-
+    HomeComponent,
+    LoginComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [
-    provideHttpClient()
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
