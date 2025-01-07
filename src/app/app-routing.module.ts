@@ -13,6 +13,7 @@ import { ExperienceComponent } from './admin/experience/experience.component';
 import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
 import { LoginComponent } from './home/login/login.component';
+import { AuthGuard } from './_guards/auth-guard';
 
 const routes: Routes = [
   //Main Routes
@@ -32,45 +33,56 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
+
     ],
   },
+
 
   //Admin Routes
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: 'banner',
-       component: BannerComponent
+       component: BannerComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'education',
-       component: EducationComponent
+       component: EducationComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'category',
-       component: CategoryComponent
+       component: CategoryComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'project',
-       component: ProjectComponent
+       component: ProjectComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'contact',
-       component: ContactComponent
+       component: ContactComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'experience',
-       component: ExperienceComponent
+       component: ExperienceComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'interest',
-       component: InterestComponent
+       component: InterestComponent,
+       canActivate:[AuthGuard]
       },
       {
         path: 'message',
-       component: MessageComponent
+       component: MessageComponent,
+       canActivate:[AuthGuard]
       },
 
     ],

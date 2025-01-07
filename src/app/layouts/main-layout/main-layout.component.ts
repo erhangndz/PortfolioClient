@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -10,7 +11,7 @@ export class MainLayoutComponent {
   /**
    *
    */
-  constructor() {
+  constructor(private authService:AuthService) {
 /* Description: Custom JS file */
 
 
@@ -87,5 +88,16 @@ $(function() {
 
 
 })}
+
+loggedIn(){
+  return this.authService.loggedIn();
+
+
+}
+
+getfullName(){
+  let decodedToken = this.authService.decodeToken();
+  return decodedToken.fullName;
+}
 
 }

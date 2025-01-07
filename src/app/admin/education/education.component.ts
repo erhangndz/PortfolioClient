@@ -42,7 +42,7 @@ deleteEducation(id:number){
     if (result.isConfirmed) {
       this.apiService.delete("educations",id).subscribe({
         error: err => alertify.error(err.error),
-        complete: () => {alertify.error("Category Deleted"),
+        complete: () => {alertify.error("Education Deleted"),
         this.educations = this.educations.filter(x=>x.id!=id) }
       });
       Swal.fire({

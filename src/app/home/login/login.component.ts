@@ -3,6 +3,7 @@ import { AuthService } from '../../_services/auth.service';
 declare const alertify:any;
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { Login } from '../../_models/login';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-model:any;
+model:any= {};
 constructor(private authService:AuthService,
             private router: Router
 ) {
@@ -21,11 +22,12 @@ constructor(private authService:AuthService,
 
   login(){
 
-    this.authService.login(this.model).subscribe(response=>{
-      alertify.success("Login Success!");
-      this.router.navigate(['/admin']);
-    }, error=>{
-      alertify.error(error.error);
+    this.authService.login(this.model).subscribe({
+      next: response=> {alertify.success("Login Success");
+        localStorage.setItem("token",response.token)
+        this.router.navigate(['/admin'])
+      } ,
+      error: err=> alertify.error(err.error)
     });
 
 }

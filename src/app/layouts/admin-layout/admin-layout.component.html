@@ -17,6 +17,10 @@
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
     <h4 class="text-white p-3">Portfolio Admin Panel</h4>
+    <h5 class="p-3">Hi, {{getFullName()}}</h5>
+
+
+    <a routerLink="/login" class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a>
     <a routerLink=""><i class="fas fa-home"></i> Home</a>
     <a routerLinkActive="active" routerLink="/admin/banner" (click)="closeSidebar()"><i class="fas fa-image"></i> Banner</a>
     <a routerLinkActive="active" routerLink="/admin/message" (click)="closeSidebar()"><i class="fas fa-comment"></i> Messages</a>

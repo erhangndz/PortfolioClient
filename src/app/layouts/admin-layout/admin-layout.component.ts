@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../_services/auth.service';
+import { Router } from '@angular/router';
 declare var bootstrap: any;
+declare const alertify:any;
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -7,6 +10,13 @@ declare var bootstrap: any;
 })
 export class AdminLayoutComponent implements OnInit {
 
+  /**
+   *
+   */
+  constructor(private authService:AuthService, private router:Router) {
+
+
+  }
 
   ngOnInit(): void {
 
@@ -87,5 +97,18 @@ sidebarLinks.forEach(link => {
   closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar?.classList.remove('open');
+  }
+
+
+  getFullName(){
+  let decodedToken:any = this.authService.decodeToken()
+
+  return decodedToken.fullName;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    alertify.success('Logged out successfully');
+    this.router.navigate(['login']);
   }
 }

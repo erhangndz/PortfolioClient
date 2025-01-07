@@ -17,7 +17,12 @@ import { ExperienceComponent } from './admin/experience/experience.component';
 import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
 import { LoginComponent } from './home/login/login.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+
+export function tokenGetter(){
+  return localStorage.getItem("token");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,15 @@ import { LoginComponent } from './home/login/login.component';
     HomeComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:tokenGetter,
+        allowedDomains: ["localhost:7001"],
+        disallowedRoutes: ["localhost:7001/api/users"],
+      },
+    })
+  ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
