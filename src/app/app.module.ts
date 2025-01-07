@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpHeaders, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BannerComponent } from './admin/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { EducationComponent } from './admin/education/education.component';
@@ -18,11 +18,14 @@ import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
 import { LoginComponent } from './home/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './_guards/auth-guard';
+import { TokenInterceptor } from './_interceptors/token-interceptor';
 
 
 export function tokenGetter(){
   return localStorage.getItem("token");
 }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,16 +42,21 @@ export function tokenGetter(){
     HomeComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule,
-    JwtModule.forRoot({
-      config:{
-        tokenGetter:tokenGetter,
-        allowedDomains: ["localhost:7001"],
-        disallowedRoutes: ["localhost:7001/api/users"],
-      },
-    })
+  imports: [BrowserModule,
+     AppRoutingModule,
+     FormsModule,
+
   ],
-  providers: [provideHttpClient()],
+  providers: [
+
+   provideHttpClient(withInterceptorsFromDi()),
+              AuthGuard,
+              { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+
+
+}

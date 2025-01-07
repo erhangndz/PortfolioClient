@@ -68,10 +68,10 @@
                         <a class="nav-link page-scroll" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item" *ngIf="!loggedIn()">
-                      <a class="nav-link page-scroll" href="login">Login</a>
+                      <a class="nav-link" href="login">Login</a>
                   </li>
                   <li class="nav-item" *ngIf="loggedIn()">
-                    <a class="nav-link page-scroll" href="/admin">{{getfullName()}}</a>
+                    <a class="nav-link" href="/admin">{{getfullName()}}</a>
                 </li>
                 </ul>
                 <span class="nav-item social-icons">

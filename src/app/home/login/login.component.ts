@@ -24,7 +24,7 @@ constructor(private authService:AuthService,
 
     this.authService.login(this.model).subscribe({
       next: response=> {alertify.success("Login Success");
-        localStorage.setItem("token",response.token)
+        localStorage.setItem("token",response.token);
         this.router.navigate(['/admin'])
       } ,
       error: err=> alertify.error(err.error)

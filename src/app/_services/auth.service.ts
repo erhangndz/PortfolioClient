@@ -10,10 +10,11 @@ import { Login } from '../_models/login';
 export class AuthService {
 
   constructor(private http:HttpClient,
-              private jwtHelper:JwtHelperService
+
   ) { }
 baseUrl = "https://localhost:7100/api/Users/login"
 decodedToken:any;
+jwtHelper = new JwtHelperService();
 
 
 login(model:any){
