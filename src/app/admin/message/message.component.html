@@ -1,1 +1,83 @@
-<p>message works!</p>
+<div class="card text-left">
+  <div class="card-body">
+    <h3 class="card-title">Received Messages</h3>
+
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th>#</th>
+        <th>Sender Name</th>
+        <th>Email</th>
+        <th>Delete</th>
+        <th>Read Message</th>
+      </tr>
+
+      <tr *ngFor="let item of messages; let i = index">
+        <th>{{ i + 1 }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteMessage(item.id)">
+          <i class="fa fa-trash" aria-hidden="true"></i>  Delete
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-info"
+            (click)="onSelected(item)"
+            data-bs-toggle="modal"
+            data-bs-target="#editBannerModal"
+          >
+           <i class="fa fa-comment" aria-hidden="true"></i> Read Message
+          </button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+
+
+
+<!-- Read Message Detail -->
+<div
+  class="modal fade"
+  id="editBannerModal"
+  tabindex="-1"
+  aria-labelledby="editBannerModalLabel"
+  aria-hidden="true"
+>
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editBannerModalLabel">
+            Message Content
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Sender Name:</strong> <span>{{selectedMessage.name}}</span></p>
+          <p><strong>Email:</strong> <span>{{selectedMessage.email}}</span></p>
+          <p><strong>Message:</strong></p>
+          <p>{{selectedMessage.messageContent}}</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+           (click)="markAsRead()"
+          >
+          <i class="fa fa-check-circle" aria-hidden="true"></i>  Mark As Read
+          </button>
+        </div>
+      </div>
+    </div>
+
+</div>

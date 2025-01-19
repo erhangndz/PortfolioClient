@@ -63,7 +63,7 @@
   <form
     #createForm="ngForm"
     (ngSubmit)="
-      createBanner(); imageUrl.value = ''; name.value = ''; title.value = ''
+      createBanner();createForm.resetForm()
     "
   >
     <div class="modal-dialog">
@@ -138,7 +138,7 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateBanner()">
+  <form #editForm="ngForm" (ngSubmit)="updateBanner();editForm.resetForm()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

@@ -81,7 +81,7 @@ this.editBanner= banner;
 
 updateBanner(){
 this.apiService.update("banners",this.editBanner.id,this.editBanner).subscribe(result=> {
-  alertify.success("Banner Updated").then(window.location.href='admin/banner') },
+  alertify.success("Banner Updated").then(this.getBanners()) },
   error=> alertify.error(error.error)
 )
 }

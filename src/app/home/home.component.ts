@@ -5,6 +5,9 @@ import { Project } from '../_models/project';
 import { Interest } from '../_models/interest';
 import { Experience } from '../_models/experience';
 import { Education } from '../_models/education';
+import { Message } from '../_models/message';
+import Swal from 'sweetalert2'
+declare const alertify:any;
 
 @Component({
   selector: 'app-home',
@@ -17,6 +20,7 @@ projects:Project[];
 interests:Interest[];
 experiences:Experience[];
 educations:Education[];
+message:Message=new Message();
 
 
 /**
@@ -61,6 +65,22 @@ getProjects(){
       getEducations(){
         this.apiService.getAll('educations').subscribe({
           next: result =>this.educations=result
+        })
+      }
+
+
+      sendMessage(){
+        this.apiService.create('messages',this.message).subscribe({
+          next: v=> Swal.fire({
+              title: "Message Sent! ",
+              text: "Your message has been sent successfully",
+              icon: "success",
+              showCancelButton: false,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "OK"
+            }),
+            error: err=> alertify.error(err.error)
         })
       }
 

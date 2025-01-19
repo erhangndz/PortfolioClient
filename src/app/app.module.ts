@@ -20,6 +20,7 @@ import { LoginComponent } from './home/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './_guards/auth-guard';
 import { TokenInterceptor } from './_interceptors/token-interceptor';
+import { ServiceComponent } from './admin/service/service.component';
 
 
 export function tokenGetter(){
@@ -41,6 +42,7 @@ export function tokenGetter(){
     MessageComponent,
     HomeComponent,
     LoginComponent,
+    ServiceComponent,
   ],
   imports: [BrowserModule,
      AppRoutingModule,
