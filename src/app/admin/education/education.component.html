@@ -35,7 +35,7 @@
 
 <!-- Create Modal -->
 <div class="modal fade" id="newBannerModal" tabindex="-1" aria-labelledby="newBannerModalLabel" aria-hidden="true">
-  <form #createForm="ngForm" (ngSubmit)="createEducation();schoolName.value='';department.value='';startYear.value='';endYear.value='';">
+  <form #createForm="ngForm" (ngSubmit)="createEducation(); createForm.resetForm()">
   <div class="modal-dialog">
     <div class="modal-content">
 

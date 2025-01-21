@@ -49,7 +49,7 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form #createForm="ngForm" (ngSubmit)="createCategory(); name.value = ''">
+  <form #createForm="ngForm" (ngSubmit)="createCategory();createForm.resetForm()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

@@ -55,7 +55,7 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form #createForm="ngForm" (ngSubmit)="createProject(); title.value =''">
+  <form #createForm="ngForm" (ngSubmit)="createProject(); createForm.resetForm()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -158,7 +158,7 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateProject(); title.value =''">
+  <form #editForm="ngForm" (ngSubmit)="updateProject()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

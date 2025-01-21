@@ -51,7 +51,7 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form #createForm="ngForm" (ngSubmit)="createInterest(); name.value = '';description.value=''">
+  <form #createForm="ngForm" (ngSubmit)="createInterest(); createForm.resetForm()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -113,7 +113,7 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateInterest(); name.value = '';description.value=''">
+  <form #editForm="ngForm" (ngSubmit)="updateInterest()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

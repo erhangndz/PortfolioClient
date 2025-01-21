@@ -55,7 +55,7 @@
   aria-labelledby="newBannerModalLabel"
   aria-hidden="true"
 >
-  <form #createForm="ngForm" (ngSubmit)="createExperience(); company.value = '';title.value='';startYear.value='';endYear.value=''">
+  <form #createForm="ngForm" (ngSubmit)="createExperience(); createForm.resetForm()">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -139,7 +139,7 @@
   aria-labelledby="editBannerModalLabel"
   aria-hidden="true"
 >
-  <form #editForm="ngForm" (ngSubmit)="updateExperience(); company.value = '';title.value='';startYear.value='';endYear.value=''">
+  <form #editForm="ngForm" (ngSubmit)="updateExperience();">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

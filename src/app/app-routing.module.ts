@@ -14,6 +14,7 @@ import { InterestComponent } from './admin/interest/interest.component';
 import { MessageComponent } from './admin/message/message.component';
 import { LoginComponent } from './home/login/login.component';
 import { AuthGuard } from './_guards/auth-guard';
+import { ServiceComponent } from './admin/service/service.component';
 
 const routes: Routes = [
   //Main Routes
@@ -82,6 +83,11 @@ const routes: Routes = [
       {
         path: 'message',
        component: MessageComponent,
+       canActivate:[AuthGuard]
+      },
+      {
+        path: 'service',
+       component: ServiceComponent,
        canActivate:[AuthGuard]
       },
 

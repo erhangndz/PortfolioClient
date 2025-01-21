@@ -14,7 +14,7 @@ export class ContactComponent {
 
   contacts:Contact[];
   contact: Contact= new Contact();
-  editContact:Contact= {id:0,address:'',email:'',phone:'',mapUrl:''}
+  editContact:any= {}
 constructor(private apiService:ApiService) {
 this.getContacts();
 
