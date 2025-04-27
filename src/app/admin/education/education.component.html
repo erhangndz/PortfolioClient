@@ -3,6 +3,7 @@
   <div class="card-body">
     <h3 class="card-title">Educations</h3>
     <table class="table table-bordered">
+      <thead>
       <tr>
         <th>#</th>
         <th>School Name</th>
@@ -12,7 +13,8 @@
         <th>Delete</th>
         <th>Edit</th>
       </tr>
-
+    </thead>
+<tbody>
     <tr *ngFor="let education of educations; let i = index">
       <th>{{i+1}}</th>
       <td>{{education.schoolName}}</td>
@@ -20,13 +22,14 @@
       <td>{{education.startYear}}</td>
       <td>{{education.endYear}}</td>
 
-      <td><button class="btn btn-danger btn-sm" (click)="deleteEducation(education.id)"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button> </td>
-      <td><button type="button"  class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editBannerModal"  (click)="onSelected(education)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
+      <td><button class="btn btn-outline-danger btn-sm" (click)="deleteEducation(education.id)"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button> </td>
+      <td><button type="button"  class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#editBannerModal"  (click)="onSelected(education)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
     </tr>
+  </tbody>
     </table>
 
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#newBannerModal">
-     <i class="fa fa-plus-circle" aria-hidden="true"></i> New Education
+    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#newBannerModal">
+     <i class="fa fa-plus" aria-hidden="true"></i> New Education
     </button>
   </div>
 </div>

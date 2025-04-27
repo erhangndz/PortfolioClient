@@ -15,6 +15,7 @@ import { MessageComponent } from './admin/message/message.component';
 import { LoginComponent } from './home/login/login.component';
 import { AuthGuard } from './_guards/auth-guard';
 import { ServiceComponent } from './admin/service/service.component';
+import { TestimonialComponent } from './admin/testimonial/testimonial.component';
 
 const routes: Routes = [
   //Main Routes
@@ -88,6 +89,11 @@ const routes: Routes = [
       {
         path: 'service',
        component: ServiceComponent,
+       canActivate:[AuthGuard]
+      },
+      {
+        path: 'testimonial',
+       component: TestimonialComponent,
        canActivate:[AuthGuard]
       },
 

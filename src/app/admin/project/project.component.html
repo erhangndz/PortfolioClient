@@ -3,6 +3,7 @@
     <h3 class="card-title">Projects</h3>
 
     <table class="table table-bordered table-hover">
+      <thead>
       <tr>
         <th>#</th>
         <th>Image</th>
@@ -12,6 +13,8 @@
         <th>Delete</th>
         <th>Edit</th>
       </tr>
+    </thead>
+    <tbody>
 
       <tr *ngFor="let item of projects; let i = index">
         <th>{{ i + 1 }}</th>
@@ -20,13 +23,13 @@
         <td><a href="{{item.githubUrl}}" target="_blank" ><i class="fab fa-github    "></i> Github</a></td>
         <td>{{item.category.name}}</td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteProject(item.id)">
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteProject(item.id)">
            <i class="fa fa-trash" aria-hidden="true"></i> Delete
           </button>
         </td>
         <td>
           <button
-            class="btn btn-info btn-sm"
+            class="btn btn-outline-info btn-sm"
             (click)="onSelected(item)"
             data-bs-toggle="modal"
             data-bs-target="#editBannerModal"
@@ -35,14 +38,15 @@
           </button>
         </td>
       </tr>
+    </tbody>
     </table>
     <button
       type="button"
-      class="btn btn-dark"
+      class="btn btn-dark btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#newBannerModal"
     >
-    <i class="fa fa-plus-circle" aria-hidden="true"></i>  New Project
+    <i class="fa fa-plus btn-sm" aria-hidden="true"></i>  New Project
     </button>
   </div>
 </div>

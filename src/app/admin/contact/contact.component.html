@@ -1,8 +1,9 @@
 <div class="card text-left">
   <div class="card-body">
-    <h3 class="card-title">Contacts</h3>
+    <h3 class="card-title">Contact Information</h3>
 
     <table class="table table-bordered table-hover">
+      <thead>
       <tr>
         <th>#</th>
         <th>Address</th>
@@ -11,36 +12,38 @@
         <th>Delete</th>
         <th>Edit</th>
       </tr>
-
+    </thead>
+<tbody>
       <tr *ngFor="let item of contacts; let i = index">
         <th>{{ i + 1 }}</th>
         <td>{{ item.address }}</td>
         <td>{{ item.email }}</td>
         <td>{{ item.phone }}</td>
         <td>
-          <button class="btn btn-danger" (click)="deleteContact(item.id)">
-            Delete
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteContact(item.id)">
+           <i class="fa fa-trash" aria-hidden="true"></i> Delete
           </button>
         </td>
         <td>
           <button
-            class="btn btn-info"
+            class="btn btn-outline-info btn-sm"
             (click)="onSelected(item)"
             data-bs-toggle="modal"
             data-bs-target="#editBannerModal"
           >
-            Edit
+           <i class="fa fa-pencil" aria-hidden="true"></i> Edit
           </button>
         </td>
       </tr>
+    </tbody>
     </table>
     <button
       type="button"
-      class="btn btn-dark"
+      class="btn btn-dark btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#newBannerModal"
     >
-      New Contact
+     <i class="fa fa-plus" aria-hidden="true"></i>  New Contact
     </button>
   </div>
 </div>
